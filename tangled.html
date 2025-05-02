@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Tangled Tulip Garden</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    /* Embed SCSS directly here (will be compiled into CSS) */
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(to top, #3e206d 0%, #ffb6c1 50%, #fdf6e3 100%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .sky {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .lantern {
+      position: absolute;
+      background: radial-gradient(circle, #fffacd 20%, #ffd700 60%, #ffa500 100%);
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffc107;
+      opacity: 0.8;
+      animation: floatUp 10s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -40px;
+        opacity: 0;
+        transform: translateX(0) scale(0.8);
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        bottom: 110%;
+        transform: translateX(-10px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .birthday-message {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      font-size: 4em;
+      color: #0a0a0a;
+      text-shadow: 0 0 8px #fff, 0 0 15px #ffccff, 0 0 25px #ff99cc;
+      animation: glow 3s ease-in-out infinite alternate;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s;
+      background-color: #e984f65e;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #ffccff, 0 0 15px #ff99cc;
+      }
+
+      100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ffccff, 0 0 30px #ff99cc;
+      }
+    }
+
+    .garden {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+      z-index: 1;
+      width: 100%;
+      max-width: 1400px;
+      box-sizing: border-box;
+    }
+
+    .tulip svg {
+      width: 40px;
+      height: 120px;
+      animation: sway 3s ease-in-out infinite alternate;
+    }
+
+    .flower {
+      fill: #ff69b4;
+      /* Pink petal color */
+      stroke: #8b0052;
+      /* Darker pink/purple outline */
+      stroke-width: 1.5px;
+      transform-origin: center bottom;
+      animation: bloom 3s ease-in-out infinite alternate;
+    }
+
+    .stem {
+      fill: #228b22;
+    }
+
+    @keyframes sway {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(2deg);
+      }
+    }
+
+    @keyframes bloom {
+
+      0%,
+      100% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(1.05);
+      }
+    }
+
+    /* Realistic Envelope (Tangled-Inspired) */
+    .envelope {
+      position: absolute;
+      top: 20%;
+      width: 350px;
+      height: 250px;
+      background: #e2c19b;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2;
+      transform-origin: center center;
+      transition: transform 0.6s ease-out;
+      overflow: hidden;
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #f9d18c;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      transition: clip-path 0.6s ease-out;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .envelope.open {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+
+    .envelope.open::before {
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    }
+
+    .envelope-content {
+      position: relative;
+      width: 80%;
+      height: 60%;
+      background: #fff;
+      border-radius: 5px;
+      transform: scale(0.8);
+      border: 2px solid #f2c085;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Envelope animation to simulate opening */
+    .envelope.open .envelope-content {
+      animation: openEnvelope 0.6s forwards;
+    }
+
+    @keyframes openEnvelope {
+      0% {
+        transform: scale(0.8);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sky" id="sky"></div>
+
+  <div class="birthday-message" id="birthday-message">Happy Birthday, Cza!🌷🎀</div>
+
+  <div class="envelope" onclick="toggleEnvelope()">
+  </div>
+
+  <div class="garden">
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Copy this tulip block 21 times -->
+    <div class="tulip">
+      <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
+        <path class="flower" d="M32,64 
+          C20,64 8,52 16,32 
+          C18,28 22,26 26,28 
+          C28,20 36,20 38,28 
+          C42,26 46,28 48,32 
+          C56,52 44,64 32,64 Z" />
+      </svg>
+    </div>
+    <!-- Repeat 20 more times -->
+  </div>
+  <audio id="myAudio" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function toggleEnvelope() {
+      var x = document.getElementById("myAudio");
+      x.play();
+      x.volume = 0.75;
+      const envelope = document.querySelector('.envelope');
+      const message = document.querySelector('.birthday-message');
+
+      envelope.classList.toggle('open');
+      if (envelope.classList.contains('open')) {
+        message.style.opacity = '1';
+        setTimeout(() => envelope.style.display = 'none', 600); // Hide envelope after animation
+      } else {
+        message.style.opacity = '0';
+        envelope.style.display = 'flex';
+      }
+
+      var myMessage = [
+        "Here we are—your 21st trip around the sun.",
+        "And while I didn't know you for all those 21 years",
+        "I'm glad I got to meet you now in this chapter of your life",
+        "I hope today brings you peace, laughter,",
+        "and maybe a few long naps in between",
+        "wouldn't be your kind of day without those, right? 😅",
+        "You've always told me how you love to rest and recharge—",
+        "so if today becomes a birthday napathon",
+        "no judgment. I'm all for the Cza's self-care agenda.",
+        "You've also said you're not used to all this attention",
+        "or being treated extra special… but sorry, birthday girl",
+        "I'm not toning it down today. Because you deserve it. All of it.",
+        "You're worth being celebrated—not just because it's your birthday",
+        "but because you're you",
+        "I know you worry about overthinking things",
+        "about saying too much or too little, or being ''too much to handle''",
+        "But just so you know—I never saw you as too much",
+        "If anything, you're refreshing. You're honest, cautious,",
+        "and careful in the way you connect with people. That's rare.",
+        "It means a lot that you even let me in, little by little.",
+        "I never take that for granted.",
+        "We both know we're still figuring things out—you with life,",
+        "dreams, your Gemini coven energy (👀),",
+        "and me just trying not to spoil every surprise I plan. 😅",
+        "But honestly, I'm happy just getting to know you",
+        "slowly, at your own pace. No rush, no pressure.",
+        "Just me, showing up whenever you need someone",
+        "who listens... or sends corny long messages after midnight.",
+        "I don't know what this year will bring for you,",
+        "but I hope it gives you clarity, more peace, and moments",
+        "that make you genuinely happy—those deep, silent kind of joys.",
+        "And if I can play even a small part in that,",
+        "then that's more than enough for me.",
+        "So today, eat your favorite food, wear something cute,",
+        "take a nap or two (I won't stop you),",
+        "and know that someone out here is silently grateful you exist",
+        "Happy 21st, Cza. You're not just someone I talk to.",
+        "You're someone I admire more than I probably say.",
+        "—From your sleepy message guy who talks too much but means every word. \n{Kel}"
+      ];
+      var i = 0;
+      var timer = 0;
+      var myVar = setInterval(function () {
+
+        document.getElementById("birthday-message").innerHTML = myMessage[i++];
+        timer += 1;
+        if (timer == 39) {
+          clearInterval(myVar);
+          document.getElementById("birthday-message").innerHTML = "—From your sleepy message guy who talks too much but means every word. {Kel}";
+        }
+      }, 5000);
+
+    }
+    // Create multiple lanterns dynamically
+    const sky = document.getElementById('sky');
+
+    for (let i = 0; i < 100; i++) {
+      const lantern = document.createElement('div');
+      lantern.classList.add('lantern');
+      lantern.style.left = `${Math.random() * 100}%`;
+      lantern.style.animationDelay = `${Math.random() * 10}s`;
+      lantern.style.width = `${15 + Math.random() * 15}px`;
+      lantern.style.height = `${25 + Math.random() * 20}px`;
+      sky.appendChild(lantern);
+    }
+  </script>
+</body>
+
+</html>
