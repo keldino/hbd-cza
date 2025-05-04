@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>To Alecza</title>
+  <title>Tangled Tulip Garden</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     /* Embed SCSS directly here (will be compiled into CSS) */
@@ -16,6 +17,25 @@
       justify-content: center;
       align-items: flex-end;
       font-family: 'Great Vibes', cursive;
+      background: linear-gradient(to top, #f8c88c, #f0a68b, #d17748, #2a2d68);
+      background-size: 100% 100%;
+      animation: skyAnimation 10s infinite alternate ease-in-out;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes skyAnimation {
+      0% {
+        background: linear-gradient(to top, #f8c88c, #f0a68b, #d17748, #2a2d68);
+      }
+
+      50% {
+        background: linear-gradient(to top, #ffdc85, #f0b078, #d17748, #2b3566);
+      }
+
+      100% {
+        background: linear-gradient(to top, #f8c88c, #f0a68b, #d17748, #2a2d68);
+      }
     }
 
     .sky {
@@ -29,11 +49,56 @@
 
     .lantern {
       position: absolute;
-      background: radial-gradient(circle, #fffacd 20%, #ffd700 60%, #ffa500 100%);
+      width: 20px;
+      height: 30px;
+      background: radial-gradient(circle at 50% 30%, #fff8dc 10%, #ffd700 40%, #ff8c00 100%);
       border-radius: 5px;
-      box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffc107;
-      opacity: 0.8;
-      animation: floatUp 10s linear infinite;
+      box-shadow:
+        0 0 8px rgba(255, 165, 0, 0.6),
+        0 0 20px rgba(255, 140, 0, 0.3),
+        inset 0 -5px 10px rgba(139, 69, 19, 0.3);
+      /* bottom shading */
+      animation: floatUp 12s linear infinite, sway 4s ease-in-out infinite, lanternFlicker 1.5s ease-in-out infinite;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    @keyframes lanternFlicker {
+      0% {
+        opacity: 1;
+      }
+
+      30% {
+        opacity: 0.8;
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.9;
+      }
+    }
+
+    .lantern::before,
+    .lantern::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      background: rgba(139, 69, 19, 0.4);
+      /* top & bottom trim */
+      left: 0;
+      border-radius: 50%;
+    }
+
+    .lantern::before {
+      top: -3px;
+    }
+
+    .lantern::after {
+      bottom: -3px;
     }
 
     @keyframes floatUp {
@@ -43,14 +108,26 @@
         transform: translateX(0) scale(0.8);
       }
 
-      50% {
+      30% {
         opacity: 1;
       }
 
       100% {
         bottom: 110%;
-        transform: translateX(-10px) scale(1.2);
+        transform: translateX(-10px) scale(1.1);
         opacity: 0;
+      }
+    }
+
+    @keyframes sway {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(8px);
       }
     }
 
@@ -93,9 +170,14 @@
       box-sizing: border-box;
     }
 
+
     .tulip svg {
       width: 40px;
       height: 120px;
+      position: absolute;
+      bottom: 95px;
+      /* move above the river height */
+      /* other styles */
       animation: sway 3s ease-in-out infinite alternate;
     }
 
@@ -103,14 +185,20 @@
       fill: #ff69b4;
       /* Pink petal color */
       stroke: #8b0052;
-      /* Darker pink/purple outline */
+      /* Darker outline */
       stroke-width: 1.5px;
+      stroke-linejoin: round;
       transform-origin: center bottom;
       animation: bloom 3s ease-in-out infinite alternate;
     }
 
     .stem {
       fill: #228b22;
+      /* Green stem */
+      stroke: #145214;
+      /* Darker green outline */
+      stroke-width: 1px;
+      stroke-linejoin: round;
     }
 
     @keyframes sway {
@@ -199,17 +287,180 @@
         transform: scale(1);
       }
     }
+
+    .birthday-scroll {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 1s ease;
+      pointer-events: none;
+    }
+
+    .scroll-body {
+      background: #fdf3d2;
+      border: 4px solid #d2aa6d;
+      padding: 40px 60px;
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .scroll-body h1 {
+      font-size: 3.5rem;
+      margin: 0 0 10px;
+      color: #7b3e19;
+      text-shadow: 1px 1px #fff6e1;
+    }
+
+    .scroll-body p {
+      font-size: 3.5rem;
+      color: #5c3b1c;
+    }
+
+    .scroll-ends {
+      width: 40px;
+      height: 120px;
+      background: repeating-radial-gradient(circle, #d2aa6d, #b3864b 10px);
+      border-radius: 20px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-ends.left {
+      border-right: 3px solid #a6752f;
+    }
+
+    .scroll-ends.right {
+      border-left: 3px solid #a6752f;
+    }
+
+    .signature {
+      margin-top: 30px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #7b3e19;
+      text-align: right;
+      opacity: 0.9;
+      display: none;
+    }
+
+    .river {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(to top, #2a3b4c, #3c5970);
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .boat {
+      position: absolute;
+      bottom: 10px;
+      left: -100px;
+      width: 100px;
+      height: 60px;
+      animation: sail 30s linear infinite;
+      z-index: 2;
+    }
+
+    .hull {
+      width: 100px;
+      height: 20px;
+      background: #5c3b1c;
+      border-radius: 0 0 50px 50px;
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .sail {
+      position: absolute;
+      top: -40px;
+      left: 40px;
+      width: 20px;
+      height: 40px;
+      background: linear-gradient(to right, #fff8dc, #f0e68c);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      box-shadow: 0 0 5px rgba(255, 255, 224, 0.3);
+    }
+
+    .shadow {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100px;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      filter: blur(2px);
+    }
+
+    @keyframes sail {
+      0% {
+        left: -120px;
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+
+      100% {
+        left: 110%;
+        transform: translateY(0);
+      }
+    }
+
+    .moon {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 80%);
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+      opacity: 0.9;
+      z-index: -1;
+      animation: moonGlow 5s infinite ease-in-out;
+    }
+
+    @keyframes moonGlow {
+      0% {
+        opacity: 0.9;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.9;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="sky" id="sky"></div>
-
-  <div class="birthday-message" id="birthday-message">Happy Birthday, Cza!🌷🎀</div>
+  <div class="moon"></div>
+  <div class="birthday-scroll" id="birthdayScroll">
+    <div class="scroll-ends left"></div>
+    <div class="scroll-body">
+      <p id="scroll-message">Happy Birthday, Cza!🌷🎀</p>
+      <div class="signature" id="signature">— Kel</div>
+    </div>
+    <div class="scroll-ends right"></div>
+  </div>
 
   <div class="envelope" onclick="toggleEnvelope()">
   </div>
-
   <div class="garden">
     <!-- Copy this tulip block 21 times -->
     <div class="tulip">
@@ -465,27 +716,36 @@
     </div>
     <!-- Repeat 20 more times -->
   </div>
+  <div class="ivy"></div>
+  <div class="river">
+    <div class="boat">
+      <div class="hull"></div>
+      <div class="sail"></div>
+      <div class="shadow"></div>
+    </div>
+  </div>
   <audio id="myAudio" loop>
     <source src="bg-music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <script>
+
     function toggleEnvelope() {
+
+      const envelope = document.querySelector('.envelope');
+      const scroll = document.getElementById('birthdayScroll');
+
+      envelope.classList.add('open');
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        scroll.style.opacity = '1';
+        scroll.style.pointerEvents = 'auto';
+      }, 600); // Wait for envelope to disappear
+
       var x = document.getElementById("myAudio");
       x.play();
       x.volume = 0.75;
-      const envelope = document.querySelector('.envelope');
-      const message = document.querySelector('.birthday-message');
-
-      envelope.classList.toggle('open');
-      if (envelope.classList.contains('open')) {
-        message.style.opacity = '1';
-        setTimeout(() => envelope.style.display = 'none', 600); // Hide envelope after animation
-      } else {
-        message.style.opacity = '0';
-        envelope.style.display = 'flex';
-      }
 
       var myMessage = [
         "Here we are—your 21st trip around the sun.",
@@ -526,25 +786,26 @@
         "and know that someone out here is silently grateful you exist",
         "Happy 21st, Cza. You're not just someone I talk to.",
         "You're someone I admire more than I probably say.",
-        "—From your sleepy message guy who talks too much but means every word. \n{Kel}"
+        "From your sleepy message guy who talks too much but means every word."
       ];
       var i = 0;
       var timer = 0;
       var myVar = setInterval(function () {
 
-        document.getElementById("birthday-message").innerHTML = myMessage[i++];
+        document.getElementById("scroll-message").innerHTML = myMessage[i++];
         timer += 1;
         if (timer == 39) {
+          var message = document.getElementById('signature');
+          message.style.display = 'block';
           clearInterval(myVar);
-          document.getElementById("birthday-message").innerHTML = "—From your sleepy message guy who talks too much but means every word. {Kel}";
+          document.getElementById("scroll-message").innerHTML = "From your sleepy message guy who talks too much but means every word.";
         }
       }, 5000);
-
     }
     // Create multiple lanterns dynamically
     const sky = document.getElementById('sky');
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 100; i++) {
       const lantern = document.createElement('div');
       lantern.classList.add('lantern');
       lantern.style.left = `${Math.random() * 100}%`;
