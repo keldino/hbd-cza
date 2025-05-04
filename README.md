@@ -19,4 +19,8 @@ This project creates a Tangled-inspired animated scene using HTML, CSS, and SCSS
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/tangled-inspired-scene.git
+   git clone https://github.com/keldino/hbd-cza.git
+
+## P.S
+
+- This project is dedicated to Alecza, whose presence brings warmth and light, just like the lanterns in this scene.
