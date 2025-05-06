@@ -673,6 +673,33 @@
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 1);
       }
     }
+
+    .tulip-popup {
+      position: fixed;
+      bottom: 25em;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff0f5;
+      color: #000000;
+      padding: 12px 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-size: 35px;
+      transition: opacity 0.5sease;
+      z-index: 9999;
+    }
+
+    .tulip {
+      cursor: pointer;
+      font-size: 36px;
+      display: inline-block;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+
+    .tulip:hover {
+      transform: scale(1);
+    }
   </style>
 </head>
 
@@ -715,7 +742,7 @@
   </div>
   <div class="garden">
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -727,7 +754,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -739,7 +766,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -751,7 +778,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -763,7 +790,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -775,7 +802,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -787,7 +814,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -799,7 +826,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -811,7 +838,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -823,7 +850,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -835,7 +862,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -847,7 +874,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -859,7 +886,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -871,7 +898,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -883,7 +910,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -895,7 +922,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -907,7 +934,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -919,7 +946,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -931,7 +958,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -943,7 +970,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -955,7 +982,7 @@
       </svg>
     </div>
     <!-- Copy this tulip block 21 times -->
-    <div class="tulip">
+    <div class="tulip" onclick="showMessage()">
       <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
         <rect class="stem" x="30" y="64" width="4" height="60" rx="2" />
         <path class="flower" d="M32,64 
@@ -996,9 +1023,136 @@
     <source src="bg-music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-
+  <div id="tulip-message" class="tulip-popup" style="display:none;"></div>
   <script>
+    const tulipMessages = [
+      "You’re the most beautiful part of my life.",
+      "Every tulip here is jealous of your beauty.",
+      "You make ordinary moments feel magical.",
+      "This tulip can’t compete with your smile.",
+      "I’d pick you again and again in every lifetime.",
+      "Just like tulips, you bloom even in the coldest days.",
+      "This petal carries a whisper of how much I care for you.",
+      "Your laughter is the sunlight to my soul.",
+      "Here’s a virtual tulip, because you deserve endless bouquets.",
+      "You're my favorite thought, every single day.",
+      "Just a click, and yet my heart skips for you.",
+      "You’re the sweetest chapter in my story.",
+      "Even flowers envy how naturally you glow.",
+      "You inspire me just by being you.",
+      "You’re my peace, my poetry, and my person.",
+      "Every time you smile, a tulip somewhere blooms.",
+      "If feelings were flowers, mine would fill an endless field for you.",
+      "No message could match how much you mean to me.",
+      "With you, even silence feels like music.",
+      "You're not just in my thoughts—you *are* the thought.",
+      "Your kindness is the fragrance in my garden.",
+      "This tulip is soft, but your presence is softer.",
+      "The stars must’ve borrowed their glow from you.",
+      "I’m lucky to live in the same timeline as you.",
+      "You're more breathtaking than spring in full bloom.",
+      "I hope this tulip reminds you how cherished you are.",
+      "You're the sweetest reason behind my smile.",
+      "I don't need a garden when I have you.",
+      "You're more magical than moonlight on tulips.",
+      "Every petal here blooms for you.",
+      "Your presence is the loveliest part of my days.",
+      "Every tulip whispers your name.",
+      "You light up my life better than any lantern.",
+      "I'd cross any distance just to give you one real tulip.",
+      "You're my favorite kind of beautiful.",
+      "You're everything soft, sweet, and wonderful.",
+      "Every click is a little confession—I adore you.",
+      "I’ll never run out of kind words for you.",
+      "You deserve gardens filled with love.",
+      "You're warmth wrapped in a smile.",
+      "Every time you open this site, I fall again.",
+      "You’re worth more than a thousand tulips.",
+      "There’s beauty in the way you exist.",
+      "If tulips could talk, they'd only sing about you.",
+      "You're a walking poem, Alecza.",
+      "A tulip a day couldn't express all I feel for you.",
+      "Just like this flower, you brighten my world.",
+      "You're not just part of my world, you *are* my world.",
+      "You turn moments into memories.",
+      "You make everything feel like spring.",
+      "In a field of tulips, I’d still see only you.",
+      "You're what I look forward to each day.",
+      "You bring calm in the chaos.",
+      "Your heart is the softest place I’ve ever known.",
+      "One click closer to me loving you more.",
+      "You're the reason my heart writes poetry.",
+      "I like you more than coffee—and that says a lot.",
+      "This tulip was grown by my affection for you.",
+      "You're the sunrise after my darkest nights.",
+      "Even the sun envies your glow.",
+      "You’re not perfect—but you’re perfect to me.",
+      "Each petal holds a piece of how I feel.",
+      "You make breathing feel more beautiful.",
+      "You have no idea how happy you make me.",
+      "I’ve seen a lot of pretty things—but you top the list.",
+      "You deserve to be loved gently, truly, endlessly.",
+      "I made this just to make you smile.",
+      "You’re the music my soul plays on repeat.",
+      "Your voice is my favorite sound.",
+      "I’d rather spend time with you than do anything else.",
+      "You’re a treasure disguised as a person.",
+      "I hope today feels as lovely as you are.",
+      "Even tulips would blush in your presence.",
+      "This tulip fell for you too.",
+      "You're the note I never want to stop writing.",
+      "You’ve bloomed in the garden of my heart.",
+      "Being with you makes time feel soft.",
+      "You turned my favorite color into 'you.'",
+      "You deserve someone who picks tulips and you—and I choose both.",
+      "You're the missing lyric in my favorite song.",
+      "Even if I wrote a thousand lines, you'd deserve more.",
+      "You're the peace in my storm.",
+      "Your light makes flowers grow in me.",
+      "You're the reason behind this little garden of love.",
+      "If I were a bee, I’d land on you every time.",
+      "You're not just beautiful—you’re meaningful.",
+      "This tulip represents a fraction of my affection.",
+      "You make my ordinary days bloom.",
+      "You belong among flowers and poetry.",
+      "Every time you click, my heart whispers your name.",
+      "I made this for *you*—yes, you.",
+      "This tulip holds a soft 'I like you.'",
+      "You’re more than words can hold.",
+      "Some things are just meant to be—and you’re one of them.",
+      "This tulip wishes it could hug you.",
+      "You turned my curiosity into care.",
+      "You're my plot twist in the best way.",
+      "This isn't just a flower—it's my way of reaching you.",
+      "If I could, I'd plant tulips in your footsteps.",
+      "I never get tired of choosing you.",
+      "You make every second softer, sweeter, and worth it.",
+      "You don’t have to do anything to be lovable. You just are.",
+      "Every flower here bloomed with a thought of you."
+    ];
 
+    function showMessage() {
+      const popup = document.getElementById('tulip-message');
+      const randomIndex = Math.floor(Math.random() * tulipMessages.length);
+      popup.innerText = tulipMessages[randomIndex];
+      popup.style.display = 'block';
+      popup.style.opacity = 1;
+
+      setTimeout(() => {
+        popup.style.opacity = 0;
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 500);
+      }, 10000);
+    }
+
+    // Random position for each tulip
+    document.querySelectorAll('.tulip').forEach(tulip => {
+      const x = Math.random() * 90; // 90% of screen width
+      const y = Math.random() * 80; // 80% of screen height
+      tulip.style.left = `${x}vw`;
+      tulip.style.top = `${y}vh`;
+    });
     function toggleEnvelope() {
 
       const envelope = document.querySelector('.envelope');
