@@ -19,7 +19,7 @@ This project creates a Tangled-inspired animated scene using HTML, CSS, and SCSS
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/keldino/hbd-cza.git
+   git clone https://github.com/keldino/ofy.git
 
 ## PostScript
 
