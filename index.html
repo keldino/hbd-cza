@@ -163,7 +163,8 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
+      top: -1.8em;
       padding: 40px 20px;
       z-index: 1;
       width: 100%;
@@ -176,7 +177,7 @@
       width: 40px;
       height: 120px;
       position: absolute;
-      bottom: 95px;
+      bottom: 85px;
       /* move above the river height */
       /* other styles */
       animation: sway 3s ease-in-out infinite alternate;
@@ -191,6 +192,10 @@
       stroke-linejoin: round;
       transform-origin: center bottom;
       animation: bloom 3s ease-in-out infinite alternate;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .stem {
@@ -200,6 +205,10 @@
       /* Darker green outline */
       stroke-width: 1px;
       stroke-linejoin: round;
+      width: 2px;
+      height: 40px;
+      background-color: green;
+      margin: 0 auto;
     }
 
     @keyframes sway {
@@ -343,69 +352,169 @@
     }
 
     .river {
-      position: absolute;
+      position: fixed;
+      /* Keep it fixed at the bottom */
       bottom: 0;
+      /* Align it to the bottom of the page */
+      left: 0;
+      /* Align it to the left */
       width: 100%;
-      height: 120px;
+      /* Make it span the whole width */
+      height: 150px;
+      /* Set the height of the river */
       background: linear-gradient(to top, #2a3b4c, #3c5970);
+      /* River color or texture */
       overflow: hidden;
-      z-index: 0;
+      /* Prevent anything from going out of bounds */
+      z-index: 1;
+      /* Make sure it's at the bottom of everything */
+    }
+
+    .boat-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      /* Boats above the river background */
     }
 
     .boat {
       position: absolute;
-      bottom: 10px;
-      left: -100px;
-      width: 100px;
-      height: 60px;
-      animation: sail 30s linear infinite;
-      z-index: 2;
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s ease-out forwards;
+      z-index: 3;
+
+      .mast {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        width: 4px;
+        height: 60px;
+        background: #5a4632;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      .sail {
+        position: absolute;
+        bottom: 30px;
+        left: 75%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 0 solid transparent;
+        border-right: 36px solid transparent;
+        border-bottom: 60px solid #fff3e6;
+        z-index: 1;
+      }
+
+      .hull {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 30px;
+        background: #6b4f3b;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        z-index: 1;
+      }
+
+      .shadow {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 15px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        filter: blur(2px);
+        z-index: 0;
+      }
     }
 
-    .hull {
-      width: 100px;
-      height: 20px;
-      background: #5c3b1c;
-      border-radius: 0 0 50px 50px;
-      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    .sail {
-      position: absolute;
-      top: -40px;
-      left: 40px;
-      width: 20px;
-      height: 40px;
-      background: linear-gradient(to right, #fff8dc, #f0e68c);
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-      box-shadow: 0 0 5px rgba(255, 255, 224, 0.3);
-    }
-
-    .shadow {
-      position: absolute;
-      top: 20px;
-      left: 0;
-      width: 100px;
-      height: 10px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 50%;
-      filter: blur(2px);
-    }
-
-    @keyframes sail {
+    @keyframes boatDrift1 {
       0% {
-        left: -120px;
+        left: -100px;
         transform: translateY(0);
       }
 
       50% {
-        transform: translateY(-5px);
+        transform: translateY(-4px);
       }
 
       100% {
         left: 110%;
         transform: translateY(0);
       }
+    }
+
+    @keyframes boatDrift2 {
+      0% {
+        left: -120px;
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(3px);
+      }
+
+      100% {
+        left: 105%;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes boatDrift3 {
+      0% {
+        left: -140px;
+        transform: translateY(0);
+      }
+
+      25% {
+        transform: translateY(-2px);
+      }
+
+      75% {
+        transform: translateY(2px);
+      }
+
+      100% {
+        left: 120%;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .boat-1 {
+      bottom: 40px;
+      animation: fadeIn 1s ease-out forwards, boatDrift1 20s linear infinite;
+      animation-delay: 0.5s, 1s;
+    }
+
+    .boat-2 {
+      bottom: 60px;
+      animation: fadeIn 1s ease-out forwards, boatDrift2 28s linear infinite;
+      animation-delay: 1s, 2s;
+    }
+
+    .boat-3 {
+      bottom: 30px;
+      animation: fadeIn 1s ease-out forwards, boatDrift3 24s linear infinite;
+      animation-delay: 1.5s, 3s;
     }
 
     .moon {
@@ -581,14 +690,16 @@
 
         <!-- Logos -->
         <div class="logos-container" id="logos-container">
-          <a href="https://open.spotify.com/playlist/6895lJMwlifmdB9ahPea5a?si=c74981f94ab5405b&pt=7563bfe661189dd9599cfa41bf8b70b7" target="_blank" class="logo-link">
+          <a href="https://open.spotify.com/playlist/6895lJMwlifmdB9ahPea5a?si=c74981f94ab5405b&pt=7563bfe661189dd9599cfa41bf8b70b7"
+            target="_blank" class="logo-link">
             <div class="tangled-spotify-logo">
               <span class="spotify-icon">🎶</span>
               <!-- Optional: You can use an actual Spotify logo icon or use text -->
               <span class="spotify-text">Spotify</span>
             </div>
           </a>
-          <a href="https://drive.google.com/file/d/1D1OFc0x9_07H19Rsa8J8hCs7CpfDTLXt/view?usp=sharing" target="_blank" class="logo-link">
+          <a href="https://drive.google.com/file/d/1D1OFc0x9_07H19Rsa8J8hCs7CpfDTLXt/view?usp=sharing" target="_blank"
+            class="logo-link">
             <div class="tangled-pdf-logo">
               <span class="pdf-icon">📜</span> <!-- Optional: You can use an actual PDF logo or this scroll icon -->
               <span class="pdf-text">PDF</span>
@@ -858,10 +969,27 @@
     <!-- Repeat 20 more times -->
   </div>
   <div class="river">
-    <div class="boat">
-      <div class="hull"></div>
-      <div class="sail"></div>
-      <div class="shadow"></div>
+    <div class="boat-container">
+      <div class="boat boat-1">
+        <div class="mast"></div>
+        <div class="sail"></div>
+        <div class="hull"></div>
+        <div class="shadow"></div>
+      </div>
+
+      <div class="boat boat-2">
+        <div class="mast"></div>
+        <div class="sail"></div>
+        <div class="hull"></div>
+        <div class="shadow"></div>
+      </div>
+
+      <div class="boat boat-3">
+        <div class="mast"></div>
+        <div class="sail"></div>
+        <div class="hull"></div>
+        <div class="shadow"></div>
+      </div>
     </div>
   </div>
   <audio id="myAudio" loop>
